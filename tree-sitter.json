@@ -4,9 +4,8 @@
 			"name": "ldap_schema",
 			"scope": "source.ldap-schema",
 			"path": ".",
-			"file-types": ["schema", "ldif-schema", "ldap-schema"],
-			"highlights": "queries/highlights.scm",
-			"injections": "queries/injections.scm"
+			"file-types": ["schema", "ldapschema"],
+			"highlights": "queries/highlights.scm"
 		}
 	],
 	"metadata": {

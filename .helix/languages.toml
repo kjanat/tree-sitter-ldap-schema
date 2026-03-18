@@ -1,5 +1,5 @@
 # Helix config for LDAP schema files
-# Uses the tree-sitter-ldap-schema grammar from this repo
+# Uses the tree-sitter-ldap-schema grammar from GitHub
 
 [[language]]
 name          = "ldap-schema"
@@ -11,5 +11,6 @@ indent        = { tab-width = 4, unit = "\t" }
 grammar       = "ldap_schema"
 
 [[grammar]]
-name   = "ldap_schema"
-source = { path = "/home/kjanat/projects/ldap-schema-zed-bundle/tree-sitter-ldap-schema" }
+name       = "ldap_schema"
+source.git = "https://github.com/kjanat/tree-sitter-ldap-schema.git"
+source.rev = "766f35786b432efd567580c2cb402cc6e9751827"

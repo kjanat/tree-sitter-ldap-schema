@@ -18,7 +18,7 @@
 		"bindings/node/*"
 	],
 	"scripts": {
-		"fmt": "npx -y dprint fmt -c=\"https://raw.githubusercontent.com/kjanat/kjanat/refs/heads/master/configs/dprint.remote.json\"",
+		"fmt": "npx -y dprint fmt",
 		"generate": "tree-sitter generate",
 		"parse": "tree-sitter parse",
 		"test": "tree-sitter test"

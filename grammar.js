@@ -1,9 +1,5 @@
 /// <reference types="tree-sitter-cli/dsl" />
 
-const PREC = {
-	COMMENT: -1,
-};
-
 module.exports = grammar({
 	name: 'ldap_schema',
 
@@ -16,6 +12,7 @@ module.exports = grammar({
 
 	conflicts: $ => [
 		[$.qdescrs, $.descr],
+		[$.oid_reference, $.descr],
 	],
 
 	rules: {
@@ -26,6 +23,8 @@ module.exports = grammar({
 				$.objectclass_definition,
 				$.attributetype_definition,
 				$.ditcontentrule_definition,
+				$.ditstructurerule_definition,
+				$.nameform_definition,
 				$.matchingrule_definition,
 				$.matchingruleuse_definition,
 				$.ldapsyntax_definition,
@@ -38,11 +37,13 @@ module.exports = grammar({
 				seq('//', /.*/),
 			)),
 
+		// OpenLDAP extension: objectidentifier name value
+		// value can be: numeric OID, symbolic ref (name:suffix), or bare name
 		objectidentifier_definition: $ =>
 			seq(
 				alias(ci('objectidentifier'), $.keyword),
 				field('name', $.bare_word),
-				field('value', choice($.oid, $.qdstring, $.bare_word)),
+				field('value', $._oid_value),
 			),
 
 		objectclass_definition: $ =>
@@ -60,6 +61,20 @@ module.exports = grammar({
 		ditcontentrule_definition: $ =>
 			seq(
 				alias(ci('ditcontentrule'), $.keyword),
+				$.definition,
+			),
+
+		// RFC 4512 §4.1.7.1 - uses ruleid (number), not OID
+		ditstructurerule_definition: $ =>
+			seq(
+				alias(ci('ditstructurerule'), $.keyword),
+				$.ruleid_definition,
+			),
+
+		// RFC 4512 §4.1.7.2
+		nameform_definition: $ =>
+			seq(
+				alias(ci('nameform'), $.keyword),
 				$.definition,
 			),
 
@@ -81,10 +96,20 @@ module.exports = grammar({
 				$.definition,
 			),
 
+		// Standard definition with OID
 		definition: $ =>
 			seq(
 				'(',
-				field('oid', $.oid),
+				field('oid', $._oid_value),
+				repeat($.clause),
+				')',
+			),
+
+		// DITStructureRule uses ruleid (number) instead of OID
+		ruleid_definition: $ =>
+			seq(
+				'(',
+				field('ruleid', $.number),
 				repeat($.clause),
 				')',
 			),
@@ -135,9 +160,9 @@ module.exports = grammar({
 				field('value', $.oid_list),
 			),
 
-		equality_clause: $ => seq(alias(ci('EQUALITY'), $.keyword), field('value', choice($.oid, $.descr))),
-		ordering_clause: $ => seq(alias(ci('ORDERING'), $.keyword), field('value', choice($.oid, $.descr))),
-		substr_clause: $ => seq(alias(ci('SUBSTR'), $.keyword), field('value', choice($.oid, $.descr))),
+		equality_clause: $ => seq(alias(ci('EQUALITY'), $.keyword), field('value', $._oid_value)),
+		ordering_clause: $ => seq(alias(ci('ORDERING'), $.keyword), field('value', $._oid_value)),
+		substr_clause: $ => seq(alias(ci('SUBSTR'), $.keyword), field('value', $._oid_value)),
 		syntax_clause: $ => seq(alias(ci('SYNTAX'), $.keyword), field('value', $.syntax_spec)),
 		single_value_clause: $ => alias(ci('SINGLE-VALUE'), $.keyword),
 		collective_clause: $ => alias(ci('COLLECTIVE'), $.keyword),
@@ -157,8 +182,8 @@ module.exports = grammar({
 		applies_clause: $ => seq(alias(ci('APPLIES'), $.keyword), field('value', $.oid_list)),
 		aux_clause: $ => seq(alias(ci('AUX'), $.keyword), field('value', $.oid_list)),
 		not_clause: $ => seq(alias(ci('NOT'), $.keyword), field('value', $.oid_list)),
-		form_clause: $ => seq(alias(ci('FORM'), $.keyword), field('value', choice($.oid, $.descr))),
-		oc_clause: $ => seq(alias(ci('OC'), $.keyword), field('value', choice($.oid, $.descr))),
+		form_clause: $ => seq(alias(ci('FORM'), $.keyword), field('value', $._oid_value)),
+		oc_clause: $ => seq(alias(ci('OC'), $.keyword), field('value', $._oid_value)),
 
 		generic_tag_clause: $ =>
 			seq(
@@ -172,7 +197,8 @@ module.exports = grammar({
 				field('value', choice($.qdstring, $.qdescrs)),
 			),
 
-		syntax_spec: $ => seq($.oid, optional(seq('{', $.number, '}'))),
+		// SYNTAX OID with optional length constraint
+		syntax_spec: $ => seq($._oid_value, optional(seq('{', $.number, '}'))),
 
 		usage_kind: $ =>
 			choice(
@@ -190,17 +216,31 @@ module.exports = grammar({
 				$.oid_item,
 			),
 
-		oid_item: $ => choice($.oid, $.descr),
+		oid_item: $ => choice($.oid, $.oid_reference, $.descr),
 
-		oid: _ => token(seq(/[0-9]+/, repeat(seq('.', /[0-9]+/)))),
+		// An OID value: numeric OID, symbolic reference, or quoted string
+		_oid_value: $ => choice($.oid, $.oid_reference, $.qdstring),
+
+		// Numeric OID: 1.2.3.4
+		oid: _ => token(seq(/[0-9]+/, repeat1(seq('.', /[0-9]+/)))),
+
+		// Symbolic OID reference: name or name:suffix (OpenLDAP extension)
+		// e.g., OpenLDAProot, OpenLDAProot:1, NSDSat:5, SunDS:9.1.596
+		oid_reference: $ => seq($.bare_word, optional(seq(':', $.oid_suffix))),
+
+		// OID suffix after colon: can be dotted like 2.27 or 9.1.596
+		oid_suffix: _ => token(seq(/[0-9]+/, repeat(seq('.', /[0-9]+/)))),
+
 		number: _ => token(/[0-9]+/),
-		x_tag: _ => token(/X-[A-Za-z][A-Za-z0-9-]*/),
+		x_tag: _ => token(/X-[A-Za-z][A-Za-z0-9_-]*/),
 		descr: $ => choice($.bare_word, $.qdstring),
 		bare_word: _ => token(/[A-Za-z_][A-Za-z0-9;._-]*/),
-		qdstring: _ => seq("'", repeat(choice(/[^'\\\n\r]/, /\\./)), "'"),
+		// RFC 4512: qdstring can contain any character except unescaped quote
+		qdstring: _ => token(seq("'", repeat(choice(/[^'\\]/, /\\./)), "'")),
 	},
 });
 
+// Case-insensitive keyword matcher
 function ci(keyword) {
 	return new RegExp(
 		keyword

@@ -1,1050 +1,1184 @@
 [
-	{
-		"type": "applies_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "oid_list",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "attributetype_definition",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "definition",
-					"named": true
-				},
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "aux_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "oid_list",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "clause",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "applies_clause",
-					"named": true
-				},
-				{
-					"type": "aux_clause",
-					"named": true
-				},
-				{
-					"type": "collective_clause",
-					"named": true
-				},
-				{
-					"type": "desc_clause",
-					"named": true
-				},
-				{
-					"type": "equality_clause",
-					"named": true
-				},
-				{
-					"type": "form_clause",
-					"named": true
-				},
-				{
-					"type": "generic_tag_clause",
-					"named": true
-				},
-				{
-					"type": "kind_clause",
-					"named": true
-				},
-				{
-					"type": "may_clause",
-					"named": true
-				},
-				{
-					"type": "must_clause",
-					"named": true
-				},
-				{
-					"type": "name_clause",
-					"named": true
-				},
-				{
-					"type": "no_user_modification_clause",
-					"named": true
-				},
-				{
-					"type": "not_clause",
-					"named": true
-				},
-				{
-					"type": "obsolete_clause",
-					"named": true
-				},
-				{
-					"type": "oc_clause",
-					"named": true
-				},
-				{
-					"type": "ordering_clause",
-					"named": true
-				},
-				{
-					"type": "single_value_clause",
-					"named": true
-				},
-				{
-					"type": "substr_clause",
-					"named": true
-				},
-				{
-					"type": "sup_clause",
-					"named": true
-				},
-				{
-					"type": "syntax_clause",
-					"named": true
-				},
-				{
-					"type": "usage_clause",
-					"named": true
-				},
-				{
-					"type": "x_clause",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "collective_clause",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "definition",
-		"named": true,
-		"fields": {
-			"oid": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "oid",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": true,
-			"required": false,
-			"types": [
-				{
-					"type": "clause",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "desc_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "qdstring",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "descr",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "bare_word",
-					"named": true
-				},
-				{
-					"type": "qdstring",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "ditcontentrule_definition",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "definition",
-					"named": true
-				},
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "equality_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "descr",
-						"named": true
-					},
-					{
-						"type": "oid",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "form_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "descr",
-						"named": true
-					},
-					{
-						"type": "oid",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "generic_tag_clause",
-		"named": true,
-		"fields": {
-			"tag": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "bare_word",
-						"named": true
-					}
-				]
-			},
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "number",
-						"named": true
-					},
-					{
-						"type": "oid_list",
-						"named": true
-					},
-					{
-						"type": "qdescrs",
-						"named": true
-					}
-				]
-			}
-		}
-	},
-	{
-		"type": "kind_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "keyword",
-						"named": true
-					}
-				]
-			}
-		}
-	},
-	{
-		"type": "ldapsyntax_definition",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "definition",
-					"named": true
-				},
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "matchingrule_definition",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "definition",
-					"named": true
-				},
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "matchingruleuse_definition",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "definition",
-					"named": true
-				},
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "may_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "oid_list",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "must_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "oid_list",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "name_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "qdescrs",
-						"named": true
-					},
-					{
-						"type": "qdstring",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "no_user_modification_clause",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "not_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "oid_list",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "objectclass_definition",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "definition",
-					"named": true
-				},
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "objectidentifier_definition",
-		"named": true,
-		"fields": {
-			"name": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "bare_word",
-						"named": true
-					}
-				]
-			},
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "bare_word",
-						"named": true
-					},
-					{
-						"type": "oid",
-						"named": true
-					},
-					{
-						"type": "qdstring",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "obsolete_clause",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "oc_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "descr",
-						"named": true
-					},
-					{
-						"type": "oid",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "oid_item",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "descr",
-					"named": true
-				},
-				{
-					"type": "oid",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "oid_list",
-		"named": true,
-		"fields": {
-			"items": {
-				"multiple": true,
-				"required": false,
-				"types": [
-					{
-						"type": "oid_item",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": false,
-			"types": [
-				{
-					"type": "oid_item",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "ordering_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "descr",
-						"named": true
-					},
-					{
-						"type": "oid",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "qdescrs",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "qdstring",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "qdstring",
-		"named": true,
-		"fields": {}
-	},
-	{
-		"type": "single_value_clause",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "source_file",
-		"named": true,
-		"root": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": false,
-			"types": [
-				{
-					"type": "attributetype_definition",
-					"named": true
-				},
-				{
-					"type": "ditcontentrule_definition",
-					"named": true
-				},
-				{
-					"type": "ldapsyntax_definition",
-					"named": true
-				},
-				{
-					"type": "matchingrule_definition",
-					"named": true
-				},
-				{
-					"type": "matchingruleuse_definition",
-					"named": true
-				},
-				{
-					"type": "objectclass_definition",
-					"named": true
-				},
-				{
-					"type": "objectidentifier_definition",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "substr_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "descr",
-						"named": true
-					},
-					{
-						"type": "oid",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "sup_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "oid_list",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "syntax_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "syntax_spec",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "syntax_spec",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": true,
-			"required": true,
-			"types": [
-				{
-					"type": "number",
-					"named": true
-				},
-				{
-					"type": "oid",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "usage_clause",
-		"named": true,
-		"fields": {
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "usage_kind",
-						"named": true
-					}
-				]
-			}
-		},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "usage_kind",
-		"named": true,
-		"fields": {},
-		"children": {
-			"multiple": false,
-			"required": true,
-			"types": [
-				{
-					"type": "keyword",
-					"named": true
-				}
-			]
-		}
-	},
-	{
-		"type": "x_clause",
-		"named": true,
-		"fields": {
-			"tag": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "x_tag",
-						"named": true
-					}
-				]
-			},
-			"value": {
-				"multiple": false,
-				"required": true,
-				"types": [
-					{
-						"type": "qdescrs",
-						"named": true
-					},
-					{
-						"type": "qdstring",
-						"named": true
-					}
-				]
-			}
-		}
-	},
-	{
-		"type": "$",
-		"named": false
-	},
-	{
-		"type": "&",
-		"named": false
-	},
-	{
-		"type": "'",
-		"named": false
-	},
-	{
-		"type": "(",
-		"named": false
-	},
-	{
-		"type": ")",
-		"named": false
-	},
-	{
-		"type": "bare_word",
-		"named": true
-	},
-	{
-		"type": "comment",
-		"named": true,
-		"extra": true
-	},
-	{
-		"type": "keyword",
-		"named": true
-	},
-	{
-		"type": "number",
-		"named": true
-	},
-	{
-		"type": "oid",
-		"named": true
-	},
-	{
-		"type": "x_tag",
-		"named": true
-	},
-	{
-		"type": "{",
-		"named": false
-	},
-	{
-		"type": "}",
-		"named": false
-	}
+  {
+    "type": "applies_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attributetype_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "aux_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "applies_clause",
+          "named": true
+        },
+        {
+          "type": "aux_clause",
+          "named": true
+        },
+        {
+          "type": "collective_clause",
+          "named": true
+        },
+        {
+          "type": "desc_clause",
+          "named": true
+        },
+        {
+          "type": "equality_clause",
+          "named": true
+        },
+        {
+          "type": "form_clause",
+          "named": true
+        },
+        {
+          "type": "generic_tag_clause",
+          "named": true
+        },
+        {
+          "type": "kind_clause",
+          "named": true
+        },
+        {
+          "type": "may_clause",
+          "named": true
+        },
+        {
+          "type": "must_clause",
+          "named": true
+        },
+        {
+          "type": "name_clause",
+          "named": true
+        },
+        {
+          "type": "no_user_modification_clause",
+          "named": true
+        },
+        {
+          "type": "not_clause",
+          "named": true
+        },
+        {
+          "type": "obsolete_clause",
+          "named": true
+        },
+        {
+          "type": "oc_clause",
+          "named": true
+        },
+        {
+          "type": "ordering_clause",
+          "named": true
+        },
+        {
+          "type": "single_value_clause",
+          "named": true
+        },
+        {
+          "type": "substr_clause",
+          "named": true
+        },
+        {
+          "type": "sup_clause",
+          "named": true
+        },
+        {
+          "type": "syntax_clause",
+          "named": true
+        },
+        {
+          "type": "usage_clause",
+          "named": true
+        },
+        {
+          "type": "x_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "collective_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "definition",
+    "named": true,
+    "fields": {
+      "oid": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid",
+            "named": true
+          },
+          {
+            "type": "oid_reference",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "desc_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "descr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bare_word",
+          "named": true
+        },
+        {
+          "type": "qdstring",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ditcontentrule_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ditstructurerule_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "ruleid_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "equality_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid",
+            "named": true
+          },
+          {
+            "type": "oid_reference",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "form_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid",
+            "named": true
+          },
+          {
+            "type": "oid_reference",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generic_tag_clause",
+    "named": true,
+    "fields": {
+      "tag": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bare_word",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "oid_list",
+            "named": true
+          },
+          {
+            "type": "qdescrs",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "kind_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "keyword",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ldapsyntax_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "matchingrule_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "matchingruleuse_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "may_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "must_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "name_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "qdescrs",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nameform_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "no_user_modification_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "not_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "objectclass_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "objectidentifier_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bare_word",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid",
+            "named": true
+          },
+          {
+            "type": "oid_reference",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "obsolete_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "oc_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid",
+            "named": true
+          },
+          {
+            "type": "oid_reference",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "oid_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "descr",
+          "named": true
+        },
+        {
+          "type": "oid",
+          "named": true
+        },
+        {
+          "type": "oid_reference",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "oid_list",
+    "named": true,
+    "fields": {
+      "items": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "oid_item",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "oid_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "oid_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "bare_word",
+          "named": true
+        },
+        {
+          "type": "oid_suffix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ordering_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid",
+            "named": true
+          },
+          {
+            "type": "oid_reference",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qdescrs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "qdstring",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ruleid_definition",
+    "named": true,
+    "fields": {
+      "ruleid": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "single_value_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attributetype_definition",
+          "named": true
+        },
+        {
+          "type": "ditcontentrule_definition",
+          "named": true
+        },
+        {
+          "type": "ditstructurerule_definition",
+          "named": true
+        },
+        {
+          "type": "ldapsyntax_definition",
+          "named": true
+        },
+        {
+          "type": "matchingrule_definition",
+          "named": true
+        },
+        {
+          "type": "matchingruleuse_definition",
+          "named": true
+        },
+        {
+          "type": "nameform_definition",
+          "named": true
+        },
+        {
+          "type": "objectclass_definition",
+          "named": true
+        },
+        {
+          "type": "objectidentifier_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "substr_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid",
+            "named": true
+          },
+          {
+            "type": "oid_reference",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sup_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "oid_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "syntax_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "syntax_spec",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "syntax_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "oid",
+          "named": true
+        },
+        {
+          "type": "oid_reference",
+          "named": true
+        },
+        {
+          "type": "qdstring",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "usage_clause",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "usage_kind",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "usage_kind",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "x_clause",
+    "named": true,
+    "fields": {
+      "tag": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "x_tag",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "qdescrs",
+            "named": true
+          },
+          {
+            "type": "qdstring",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "bare_word",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
+  },
+  {
+    "type": "keyword",
+    "named": true
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "oid",
+    "named": true
+  },
+  {
+    "type": "oid_suffix",
+    "named": true
+  },
+  {
+    "type": "qdstring",
+    "named": true
+  },
+  {
+    "type": "x_tag",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
 ]

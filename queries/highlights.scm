@@ -1,5 +1,6 @@
 (comment) @comment
 (oid) @number
+(oid_suffix) @number
 (number) @number
 (qdstring) @string
 (x_tag) @attribute
@@ -15,6 +16,7 @@
 [
   "$"
   "&"
+  ":"
 ] @operator
 
 (name_clause
@@ -35,20 +37,24 @@
 (x_clause
   tag: (x_tag) @attribute)
 
+; OID references in various clauses
+(oid_reference
+  (bare_word) @type)
+
 (sup_clause
-  value: (oid_list (oid_item (descr (bare_word) @type))))
+  value: (oid_list (oid_item (oid_reference (bare_word) @type))))
 
 (must_clause
-  value: (oid_list (oid_item (descr (bare_word) @property))))
+  value: (oid_list (oid_item (oid_reference (bare_word) @property))))
 
 (may_clause
-  value: (oid_list (oid_item (descr (bare_word) @property))))
+  value: (oid_list (oid_item (oid_reference (bare_word) @property))))
 
 (applies_clause
-  value: (oid_list (oid_item (descr (bare_word) @property))))
+  value: (oid_list (oid_item (oid_reference (bare_word) @property))))
 
 (aux_clause
-  value: (oid_list (oid_item (descr (bare_word) @property))))
+  value: (oid_list (oid_item (oid_reference (bare_word) @property))))
 
 (not_clause
-  value: (oid_list (oid_item (descr (bare_word) @property))))
+  value: (oid_list (oid_item (oid_reference (bare_word) @property))))

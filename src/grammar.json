@@ -1,1152 +1,1252 @@
 {
-	"$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-	"name": "ldap_schema",
-	"word": "bare_word",
-	"rules": {
-		"source_file": {
-			"type": "REPEAT",
-			"content": {
-				"type": "SYMBOL",
-				"name": "_statement"
-			}
-		},
-		"_statement": {
-			"type": "CHOICE",
-			"members": [
-				{
-					"type": "SYMBOL",
-					"name": "objectclass_definition"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "attributetype_definition"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "ditcontentrule_definition"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "matchingrule_definition"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "matchingruleuse_definition"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "ldapsyntax_definition"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "objectidentifier_definition"
-				}
-			]
-		},
-		"comment": {
-			"type": "TOKEN",
-			"content": {
-				"type": "CHOICE",
-				"members": [
-					{
-						"type": "SEQ",
-						"members": [
-							{
-								"type": "STRING",
-								"value": "#"
-							},
-							{
-								"type": "PATTERN",
-								"value": ".*"
-							}
-						]
-					},
-					{
-						"type": "SEQ",
-						"members": [
-							{
-								"type": "STRING",
-								"value": "//"
-							},
-							{
-								"type": "PATTERN",
-								"value": ".*"
-							}
-						]
-					}
-				]
-			}
-		},
-		"objectidentifier_definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[oO][bB][jJ][eE][cC][tT][iI][dD][eE][nN][tT][iI][fF][iI][eE][rR]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "name",
-					"content": {
-						"type": "SYMBOL",
-						"name": "bare_word"
-					}
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "oid"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "qdstring"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "bare_word"
-							}
-						]
-					}
-				}
-			]
-		},
-		"objectclass_definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[oO][bB][jJ][eE][cC][tT][cC][lL][aA][sS][sS]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "definition"
-				}
-			]
-		},
-		"attributetype_definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[aA][tT][tT][rR][iI][bB][uU][tT][eE][tT][yY][pP][eE]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "definition"
-				}
-			]
-		},
-		"ditcontentrule_definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[dD][iI][tT][cC][oO][nN][tT][eE][nN][tT][rR][uU][lL][eE]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "definition"
-				}
-			]
-		},
-		"matchingrule_definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[mM][aA][tT][cC][hH][iI][nN][gG][rR][uU][lL][eE]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "definition"
-				}
-			]
-		},
-		"matchingruleuse_definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[mM][aA][tT][cC][hH][iI][nN][gG][rR][uU][lL][eE][uU][sS][eE]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "definition"
-				}
-			]
-		},
-		"ldapsyntax_definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[lL][dD][aA][pP][sS][yY][nN][tT][aA][xX]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "definition"
-				}
-			]
-		},
-		"definition": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "STRING",
-					"value": "("
-				},
-				{
-					"type": "FIELD",
-					"name": "oid",
-					"content": {
-						"type": "SYMBOL",
-						"name": "oid"
-					}
-				},
-				{
-					"type": "REPEAT",
-					"content": {
-						"type": "SYMBOL",
-						"name": "clause"
-					}
-				},
-				{
-					"type": "STRING",
-					"value": ")"
-				}
-			]
-		},
-		"clause": {
-			"type": "CHOICE",
-			"members": [
-				{
-					"type": "SYMBOL",
-					"name": "name_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "desc_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "obsolete_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "sup_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "equality_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "ordering_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "substr_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "syntax_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "single_value_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "collective_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "no_user_modification_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "usage_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "kind_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "must_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "may_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "applies_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "aux_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "not_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "form_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "oc_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "x_clause"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "generic_tag_clause"
-				}
-			]
-		},
-		"name_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[nN][aA][mM][eE]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "qdstring"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "qdescrs"
-							}
-						]
-					}
-				}
-			]
-		},
-		"desc_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[dD][eE][sS][cC]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "qdstring"
-					}
-				}
-			]
-		},
-		"obsolete_clause": {
-			"type": "ALIAS",
-			"content": {
-				"type": "PATTERN",
-				"value": "[oO][bB][sS][oO][lL][eE][tT][eE]"
-			},
-			"named": true,
-			"value": "keyword"
-		},
-		"sup_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[sS][uU][pP]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "oid_list"
-					}
-				}
-			]
-		},
-		"equality_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[eE][qQ][uU][aA][lL][iI][tT][yY]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "oid"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "descr"
-							}
-						]
-					}
-				}
-			]
-		},
-		"ordering_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[oO][rR][dD][eE][rR][iI][nN][gG]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "oid"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "descr"
-							}
-						]
-					}
-				}
-			]
-		},
-		"substr_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[sS][uU][bB][sS][tT][rR]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "oid"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "descr"
-							}
-						]
-					}
-				}
-			]
-		},
-		"syntax_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[sS][yY][nN][tT][aA][xX]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "syntax_spec"
-					}
-				}
-			]
-		},
-		"single_value_clause": {
-			"type": "ALIAS",
-			"content": {
-				"type": "PATTERN",
-				"value": "[sS][iI][nN][gG][lL][eE]\\-[vV][aA][lL][uU][eE]"
-			},
-			"named": true,
-			"value": "keyword"
-		},
-		"collective_clause": {
-			"type": "ALIAS",
-			"content": {
-				"type": "PATTERN",
-				"value": "[cC][oO][lL][lL][eE][cC][tT][iI][vV][eE]"
-			},
-			"named": true,
-			"value": "keyword"
-		},
-		"no_user_modification_clause": {
-			"type": "ALIAS",
-			"content": {
-				"type": "PATTERN",
-				"value": "[nN][oO]\\-[uU][sS][eE][rR]\\-[mM][oO][dD][iI][fF][iI][cC][aA][tT][iI][oO][nN]"
-			},
-			"named": true,
-			"value": "keyword"
-		},
-		"usage_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[uU][sS][aA][gG][eE]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "usage_kind"
-					}
-				}
-			]
-		},
-		"kind_clause": {
-			"type": "FIELD",
-			"name": "value",
-			"content": {
-				"type": "CHOICE",
-				"members": [
-					{
-						"type": "ALIAS",
-						"content": {
-							"type": "PATTERN",
-							"value": "[aA][bB][sS][tT][rR][aA][cC][tT]"
-						},
-						"named": true,
-						"value": "keyword"
-					},
-					{
-						"type": "ALIAS",
-						"content": {
-							"type": "PATTERN",
-							"value": "[sS][tT][rR][uU][cC][tT][uU][rR][aA][lL]"
-						},
-						"named": true,
-						"value": "keyword"
-					},
-					{
-						"type": "ALIAS",
-						"content": {
-							"type": "PATTERN",
-							"value": "[aA][uU][xX][iI][lL][iI][aA][rR][yY]"
-						},
-						"named": true,
-						"value": "keyword"
-					}
-				]
-			}
-		},
-		"must_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[mM][uU][sS][tT]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "oid_list"
-					}
-				}
-			]
-		},
-		"may_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[mM][aA][yY]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "oid_list"
-					}
-				}
-			]
-		},
-		"applies_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[aA][pP][pP][lL][iI][eE][sS]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "oid_list"
-					}
-				}
-			]
-		},
-		"aux_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[aA][uU][xX]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "oid_list"
-					}
-				}
-			]
-		},
-		"not_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[nN][oO][tT]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "SYMBOL",
-						"name": "oid_list"
-					}
-				}
-			]
-		},
-		"form_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[fF][oO][rR][mM]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "oid"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "descr"
-							}
-						]
-					}
-				}
-			]
-		},
-		"oc_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[oO][cC]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "oid"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "descr"
-							}
-						]
-					}
-				}
-			]
-		},
-		"generic_tag_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "FIELD",
-					"name": "tag",
-					"content": {
-						"type": "SYMBOL",
-						"name": "bare_word"
-					}
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "qdescrs"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "oid_list"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "number"
-							}
-						]
-					}
-				}
-			]
-		},
-		"x_clause": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "FIELD",
-					"name": "tag",
-					"content": {
-						"type": "SYMBOL",
-						"name": "x_tag"
-					}
-				},
-				{
-					"type": "FIELD",
-					"name": "value",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "SYMBOL",
-								"name": "qdstring"
-							},
-							{
-								"type": "SYMBOL",
-								"name": "qdescrs"
-							}
-						]
-					}
-				}
-			]
-		},
-		"syntax_spec": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "SYMBOL",
-					"name": "oid"
-				},
-				{
-					"type": "CHOICE",
-					"members": [
-						{
-							"type": "SEQ",
-							"members": [
-								{
-									"type": "STRING",
-									"value": "{"
-								},
-								{
-									"type": "SYMBOL",
-									"name": "number"
-								},
-								{
-									"type": "STRING",
-									"value": "}"
-								}
-							]
-						},
-						{
-							"type": "BLANK"
-						}
-					]
-				}
-			]
-		},
-		"usage_kind": {
-			"type": "CHOICE",
-			"members": [
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[uU][sS][eE][rR][aA][pP][pP][lL][iI][cC][aA][tT][iI][oO][nN][sS]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[dD][iI][rR][eE][cC][tT][oO][rR][yY][oO][pP][eE][rR][aA][tT][iI][oO][nN]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[dD][iI][sS][tT][rR][iI][bB][uU][tT][eE][dD][oO][pP][eE][rR][aA][tT][iI][oO][nN]"
-					},
-					"named": true,
-					"value": "keyword"
-				},
-				{
-					"type": "ALIAS",
-					"content": {
-						"type": "PATTERN",
-						"value": "[dD][sS][aA][oO][pP][eE][rR][aA][tT][iI][oO][nN]"
-					},
-					"named": true,
-					"value": "keyword"
-				}
-			]
-		},
-		"qdescrs": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "STRING",
-					"value": "("
-				},
-				{
-					"type": "REPEAT1",
-					"content": {
-						"type": "SYMBOL",
-						"name": "qdstring"
-					}
-				},
-				{
-					"type": "STRING",
-					"value": ")"
-				}
-			]
-		},
-		"oid_list": {
-			"type": "CHOICE",
-			"members": [
-				{
-					"type": "SEQ",
-					"members": [
-						{
-							"type": "STRING",
-							"value": "("
-						},
-						{
-							"type": "FIELD",
-							"name": "items",
-							"content": {
-								"type": "SYMBOL",
-								"name": "oid_item"
-							}
-						},
-						{
-							"type": "REPEAT",
-							"content": {
-								"type": "SEQ",
-								"members": [
-									{
-										"type": "CHOICE",
-										"members": [
-											{
-												"type": "STRING",
-												"value": "$"
-											},
-											{
-												"type": "STRING",
-												"value": "&"
-											}
-										]
-									},
-									{
-										"type": "FIELD",
-										"name": "items",
-										"content": {
-											"type": "SYMBOL",
-											"name": "oid_item"
-										}
-									}
-								]
-							}
-						},
-						{
-							"type": "STRING",
-							"value": ")"
-						}
-					]
-				},
-				{
-					"type": "SYMBOL",
-					"name": "oid_item"
-				}
-			]
-		},
-		"oid_item": {
-			"type": "CHOICE",
-			"members": [
-				{
-					"type": "SYMBOL",
-					"name": "oid"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "descr"
-				}
-			]
-		},
-		"oid": {
-			"type": "TOKEN",
-			"content": {
-				"type": "SEQ",
-				"members": [
-					{
-						"type": "PATTERN",
-						"value": "[0-9]+"
-					},
-					{
-						"type": "REPEAT",
-						"content": {
-							"type": "SEQ",
-							"members": [
-								{
-									"type": "STRING",
-									"value": "."
-								},
-								{
-									"type": "PATTERN",
-									"value": "[0-9]+"
-								}
-							]
-						}
-					}
-				]
-			}
-		},
-		"number": {
-			"type": "TOKEN",
-			"content": {
-				"type": "PATTERN",
-				"value": "[0-9]+"
-			}
-		},
-		"x_tag": {
-			"type": "TOKEN",
-			"content": {
-				"type": "PATTERN",
-				"value": "X-[A-Za-z][A-Za-z0-9-]*"
-			}
-		},
-		"descr": {
-			"type": "CHOICE",
-			"members": [
-				{
-					"type": "SYMBOL",
-					"name": "bare_word"
-				},
-				{
-					"type": "SYMBOL",
-					"name": "qdstring"
-				}
-			]
-		},
-		"bare_word": {
-			"type": "TOKEN",
-			"content": {
-				"type": "PATTERN",
-				"value": "[A-Za-z_][A-Za-z0-9;._-]*"
-			}
-		},
-		"qdstring": {
-			"type": "SEQ",
-			"members": [
-				{
-					"type": "STRING",
-					"value": "'"
-				},
-				{
-					"type": "REPEAT",
-					"content": {
-						"type": "CHOICE",
-						"members": [
-							{
-								"type": "PATTERN",
-								"value": "[^'\\\\\\n\\r]"
-							},
-							{
-								"type": "PATTERN",
-								"value": "\\\\."
-							}
-						]
-					}
-				},
-				{
-					"type": "STRING",
-					"value": "'"
-				}
-			]
-		}
-	},
-	"extras": [
-		{
-			"type": "PATTERN",
-			"value": "[\\s\\f\\r\\n\\t]+"
-		},
-		{
-			"type": "SYMBOL",
-			"name": "comment"
-		}
-	],
-	"conflicts": [
-		[
-			"qdescrs",
-			"descr"
-		]
-	],
-	"precedences": [],
-	"externals": [],
-	"inline": [],
-	"supertypes": [],
-	"reserved": {}
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "ldap_schema",
+  "word": "bare_word",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_statement"
+      }
+    },
+    "_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "objectclass_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attributetype_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ditcontentrule_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ditstructurerule_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nameform_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "matchingrule_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "matchingruleuse_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ldapsyntax_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "objectidentifier_definition"
+        }
+      ]
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "#"
+              },
+              {
+                "type": "PATTERN",
+                "value": ".*"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "//"
+              },
+              {
+                "type": "PATTERN",
+                "value": ".*"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "objectidentifier_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][bB][jJ][eE][cC][tT][iI][dD][eE][nN][tT][iI][fF][iI][eE][rR]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "bare_word"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_oid_value"
+          }
+        }
+      ]
+    },
+    "objectclass_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][bB][jJ][eE][cC][tT][cC][lL][aA][sS][sS]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
+        }
+      ]
+    },
+    "attributetype_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[aA][tT][tT][rR][iI][bB][uU][tT][eE][tT][yY][pP][eE]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
+        }
+      ]
+    },
+    "ditcontentrule_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[dD][iI][tT][cC][oO][nN][tT][eE][nN][tT][rR][uU][lL][eE]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
+        }
+      ]
+    },
+    "ditstructurerule_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[dD][iI][tT][sS][tT][rR][uU][cC][tT][uU][rR][eE][rR][uU][lL][eE]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ruleid_definition"
+        }
+      ]
+    },
+    "nameform_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[nN][aA][mM][eE][fF][oO][rR][mM]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
+        }
+      ]
+    },
+    "matchingrule_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[mM][aA][tT][cC][hH][iI][nN][gG][rR][uU][lL][eE]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
+        }
+      ]
+    },
+    "matchingruleuse_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[mM][aA][tT][cC][hH][iI][nN][gG][rR][uU][lL][eE][uU][sS][eE]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
+        }
+      ]
+    },
+    "ldapsyntax_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[lL][dD][aA][pP][sS][yY][nN][tT][aA][xX]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
+        }
+      ]
+    },
+    "definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "oid",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_oid_value"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "clause"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "ruleid_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "ruleid",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "clause"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "clause": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "name_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "desc_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "obsolete_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sup_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "equality_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ordering_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "substr_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "syntax_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "single_value_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "collective_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "no_user_modification_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "usage_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kind_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "must_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "may_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "applies_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "aux_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "not_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "form_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "oc_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "x_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_tag_clause"
+        }
+      ]
+    },
+    "name_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[nN][aA][mM][eE]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "qdstring"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "qdescrs"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "desc_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[dD][eE][sS][cC]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "qdstring"
+          }
+        }
+      ]
+    },
+    "obsolete_clause": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[oO][bB][sS][oO][lL][eE][tT][eE]"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "sup_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][uU][pP]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "oid_list"
+          }
+        }
+      ]
+    },
+    "equality_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[eE][qQ][uU][aA][lL][iI][tT][yY]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_oid_value"
+          }
+        }
+      ]
+    },
+    "ordering_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][rR][dD][eE][rR][iI][nN][gG]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_oid_value"
+          }
+        }
+      ]
+    },
+    "substr_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][uU][bB][sS][tT][rR]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_oid_value"
+          }
+        }
+      ]
+    },
+    "syntax_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][yY][nN][tT][aA][xX]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "syntax_spec"
+          }
+        }
+      ]
+    },
+    "single_value_clause": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[sS][iI][nN][gG][lL][eE]\\-[vV][aA][lL][uU][eE]"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "collective_clause": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[cC][oO][lL][lL][eE][cC][tT][iI][vV][eE]"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "no_user_modification_clause": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[nN][oO]\\-[uU][sS][eE][rR]\\-[mM][oO][dD][iI][fF][iI][cC][aA][tT][iI][oO][nN]"
+      },
+      "named": true,
+      "value": "keyword"
+    },
+    "usage_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[uU][sS][aA][gG][eE]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "usage_kind"
+          }
+        }
+      ]
+    },
+    "kind_clause": {
+      "type": "FIELD",
+      "name": "value",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][bB][sS][tT][rR][aA][cC][tT]"
+            },
+            "named": true,
+            "value": "keyword"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[sS][tT][rR][uU][cC][tT][uU][rR][aA][lL]"
+            },
+            "named": true,
+            "value": "keyword"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[aA][uU][xX][iI][lL][iI][aA][rR][yY]"
+            },
+            "named": true,
+            "value": "keyword"
+          }
+        ]
+      }
+    },
+    "must_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[mM][uU][sS][tT]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "oid_list"
+          }
+        }
+      ]
+    },
+    "may_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[mM][aA][yY]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "oid_list"
+          }
+        }
+      ]
+    },
+    "applies_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[aA][pP][pP][lL][iI][eE][sS]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "oid_list"
+          }
+        }
+      ]
+    },
+    "aux_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[aA][uU][xX]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "oid_list"
+          }
+        }
+      ]
+    },
+    "not_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[nN][oO][tT]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "oid_list"
+          }
+        }
+      ]
+    },
+    "form_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[fF][oO][rR][mM]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_oid_value"
+          }
+        }
+      ]
+    },
+    "oc_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][cC]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_oid_value"
+          }
+        }
+      ]
+    },
+    "generic_tag_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "tag",
+          "content": {
+            "type": "SYMBOL",
+            "name": "bare_word"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "qdescrs"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "oid_list"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "number"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "x_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "tag",
+          "content": {
+            "type": "SYMBOL",
+            "name": "x_tag"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "qdstring"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "qdescrs"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "syntax_spec": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_oid_value"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "{"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "number"
+                },
+                {
+                  "type": "STRING",
+                  "value": "}"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "usage_kind": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[uU][sS][eE][rR][aA][pP][pP][lL][iI][cC][aA][tT][iI][oO][nN][sS]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[dD][iI][rR][eE][cC][tT][oO][rR][yY][oO][pP][eE][rR][aA][tT][iI][oO][nN]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[dD][iI][sS][tT][rR][iI][bB][uU][tT][eE][dD][oO][pP][eE][rR][aA][tT][iI][oO][nN]"
+          },
+          "named": true,
+          "value": "keyword"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[dD][sS][aA][oO][pP][eE][rR][aA][tT][iI][oO][nN]"
+          },
+          "named": true,
+          "value": "keyword"
+        }
+      ]
+    },
+    "qdescrs": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "qdstring"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "oid_list": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "FIELD",
+              "name": "items",
+              "content": {
+                "type": "SYMBOL",
+                "name": "oid_item"
+              }
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "$"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "&"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "items",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "oid_item"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "oid_item"
+        }
+      ]
+    },
+    "oid_item": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "oid"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "oid_reference"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "descr"
+        }
+      ]
+    },
+    "_oid_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "oid"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "oid_reference"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "qdstring"
+        }
+      ]
+    },
+    "oid": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[0-9]+"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[0-9]+"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "oid_reference": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "bare_word"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "oid_suffix"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "oid_suffix": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[0-9]+"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[0-9]+"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "number": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[0-9]+"
+      }
+    },
+    "x_tag": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "X-[A-Za-z][A-Za-z0-9_-]*"
+      }
+    },
+    "descr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "bare_word"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "qdstring"
+        }
+      ]
+    },
+    "bare_word": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[A-Za-z_][A-Za-z0-9;._-]*"
+      }
+    },
+    "qdstring": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "'"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^'\\\\]"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "\\\\."
+                }
+              ]
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "'"
+          }
+        ]
+      }
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "[\\s\\f\\r\\n\\t]+"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    }
+  ],
+  "conflicts": [
+    [
+      "qdescrs",
+      "descr"
+    ],
+    [
+      "oid_reference",
+      "descr"
+    ]
+  ],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": [],
+  "reserved": {}
 }

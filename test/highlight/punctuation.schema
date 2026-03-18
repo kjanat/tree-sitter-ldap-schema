@@ -1,0 +1,17 @@
+objectClass ( 1.2.3.4
+#           ^ punctuation.bracket
+    NAME ( 'a' 'b' )
+#        ^ punctuation.bracket
+#                  ^ punctuation.bracket
+    MAY ( sn $ cn )
+#       ^ punctuation.bracket
+#            ^ punctuation.delimiter
+#                 ^ punctuation.bracket
+    )
+#   ^ punctuation.bracket
+
+attributeType ( 1.2.3.5
+    NAME 'test'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{32} )
+#                                       ^ punctuation.bracket
+#                                          ^ punctuation.bracket

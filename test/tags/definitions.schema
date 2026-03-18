@@ -1,0 +1,28 @@
+objectidentifier acmeRoot 1.3.6.1.4.1.99999
+#                ^ definition.module
+
+objectClass ( 1.2.3.4
+    NAME 'person'
+#        ^ definition.class
+    SUP top )
+#       ^ reference.class
+
+attributeType ( 1.2.3.5
+    NAME 'testAttr'
+#        ^ definition.class
+    EQUALITY caseIgnoreMatch
+#            ^ reference.call
+    ORDERING caseIgnoreOrderingMatch
+#            ^ reference.call
+    SUBSTR caseIgnoreSubstringsMatch )
+#          ^ reference.call
+
+matchingRule ( 1.2.3.6
+    NAME 'acmeMatch'
+#        ^ definition.function
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+
+ldapSyntax ( 1.2.3.7
+    NAME 'acmeSyntax'
+#        ^ definition.interface
+    DESC 'Test syntax' )

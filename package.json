@@ -2,6 +2,7 @@
 	"name": "tree-sitter-ldap-schema",
 	"version": "0.1.0",
 	"description": "Tree-sitter grammar for OpenLDAP / RFC 4512 LDAP schema files",
+	"type": "commonjs",
 	"keywords": [
 		"parser",
 		"tree-sitter",
@@ -28,7 +29,8 @@
 		"test": "tree-sitter test"
 	},
 	"devDependencies": {
-		"tree-sitter-cli": "^0.25.3"
+		"tree-sitter-cli": "^0.25.3",
+		"typescript": "^5.9.3"
 	},
 	"tree-sitter": [
 		{

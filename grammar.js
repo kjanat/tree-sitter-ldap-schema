@@ -1,6 +1,6 @@
 /// <reference types="tree-sitter-cli/dsl" />
 
-module.exports = grammar({
+export default grammar({
 	name: 'ldap_schema',
 
 	extras: $ => [
@@ -272,11 +272,12 @@ module.exports = grammar({
 });
 
 // Case-insensitive keyword matcher
+/** @param {string} keyword */
 function ci(keyword) {
 	return new RegExp(
 		keyword
 			.split('')
-			.map(ch => {
+			.map(/** @param {string} ch */ ch => {
 				if (/[-]/.test(ch)) return `\\${ch}`;
 				if (/[a-zA-Z]/.test(ch)) return `[${ch.toLowerCase()}${ch.toUpperCase()}]`;
 				return ch;

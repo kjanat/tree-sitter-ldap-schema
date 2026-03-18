@@ -43,38 +43,7 @@
 (sup_clause
   value: (oid_list (oid_item (oid_reference (bare_word) @type))))
 
-; MUST/MAY/etc attribute names (orange - constant)
-(must_clause
-  value: (oid_list
-    items: (oid_item
-      (oid_reference
-        (bare_word) @constant))))
-
-(may_clause
-  value: (oid_list
-    items: (oid_item
-      (oid_reference
-        (bare_word) @constant))))
-
-(applies_clause
-  value: (oid_list
-    items: (oid_item
-      (oid_reference
-        (bare_word) @constant))))
-
-(aux_clause
-  value: (oid_list
-    items: (oid_item
-      (oid_reference
-        (bare_word) @constant))))
-
-(not_clause
-  value: (oid_list
-    items: (oid_item
-      (oid_reference
-        (bare_word) @constant))))
-
-; Single item (not in parens) - also needs matching
+; MUST/MAY/AUX/NOT/APPLIES attribute names (orange - constant)
 (must_clause
   value: (oid_list
     (oid_item
@@ -82,6 +51,24 @@
         (bare_word) @constant))))
 
 (may_clause
+  value: (oid_list
+    (oid_item
+      (oid_reference
+        (bare_word) @constant))))
+
+(applies_clause
+  value: (oid_list
+    (oid_item
+      (oid_reference
+        (bare_word) @constant))))
+
+(aux_clause
+  value: (oid_list
+    (oid_item
+      (oid_reference
+        (bare_word) @constant))))
+
+(not_clause
   value: (oid_list
     (oid_item
       (oid_reference

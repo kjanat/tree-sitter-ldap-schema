@@ -110,8 +110,34 @@ module.exports = grammar({
 			seq(
 				'(',
 				field('ruleid', $.number),
-				repeat($.clause),
+				repeat($.ditstructurerule_clause),
 				')',
+			),
+
+		// Clauses valid in DITStructureRule (uses ruleid_list for SUP)
+		ditstructurerule_clause: $ =>
+			choice(
+				$.name_clause,
+				$.desc_clause,
+				$.obsolete_clause,
+				$.ditstructurerule_sup_clause,
+				$.form_clause,
+				$.x_clause,
+				$.generic_tag_clause,
+			),
+
+		// SUP for DITStructureRule uses numeric rule IDs
+		ditstructurerule_sup_clause: $ =>
+			seq(
+				alias(ci('SUP'), $.keyword),
+				field('value', $.ruleid_list),
+			),
+
+		// List of numeric rule IDs
+		ruleid_list: $ =>
+			choice(
+				seq('(', field('items', $.number), repeat(seq('$', field('items', $.number))), ')'),
+				$.number,
 			),
 
 		clause: $ =>
@@ -160,9 +186,9 @@ module.exports = grammar({
 				field('value', $.oid_list),
 			),
 
-		equality_clause: $ => seq(alias(ci('EQUALITY'), $.keyword), field('value', $._oid_value)),
-		ordering_clause: $ => seq(alias(ci('ORDERING'), $.keyword), field('value', $._oid_value)),
-		substr_clause: $ => seq(alias(ci('SUBSTR'), $.keyword), field('value', $._oid_value)),
+		equality_clause: $ => seq(alias(ci('EQUALITY'), $.keyword), field('value', $._oid_ref)),
+		ordering_clause: $ => seq(alias(ci('ORDERING'), $.keyword), field('value', $._oid_ref)),
+		substr_clause: $ => seq(alias(ci('SUBSTR'), $.keyword), field('value', $._oid_ref)),
 		syntax_clause: $ => seq(alias(ci('SYNTAX'), $.keyword), field('value', $.syntax_spec)),
 		single_value_clause: $ => alias(ci('SINGLE-VALUE'), $.keyword),
 		collective_clause: $ => alias(ci('COLLECTIVE'), $.keyword),
@@ -182,8 +208,8 @@ module.exports = grammar({
 		applies_clause: $ => seq(alias(ci('APPLIES'), $.keyword), field('value', $.oid_list)),
 		aux_clause: $ => seq(alias(ci('AUX'), $.keyword), field('value', $.oid_list)),
 		not_clause: $ => seq(alias(ci('NOT'), $.keyword), field('value', $.oid_list)),
-		form_clause: $ => seq(alias(ci('FORM'), $.keyword), field('value', $._oid_value)),
-		oc_clause: $ => seq(alias(ci('OC'), $.keyword), field('value', $._oid_value)),
+		form_clause: $ => seq(alias(ci('FORM'), $.keyword), field('value', $._oid_ref)),
+		oc_clause: $ => seq(alias(ci('OC'), $.keyword), field('value', $._oid_ref)),
 
 		generic_tag_clause: $ =>
 			seq(
@@ -198,7 +224,7 @@ module.exports = grammar({
 			),
 
 		// SYNTAX OID with optional length constraint
-		syntax_spec: $ => seq($._oid_value, optional(seq('{', $.number, '}'))),
+		syntax_spec: $ => seq($._oid_ref, optional(seq('{', $.number, '}'))),
 
 		usage_kind: $ =>
 			choice(
@@ -218,7 +244,10 @@ module.exports = grammar({
 
 		oid_item: $ => choice($.oid, $.oid_reference, $.descr),
 
-		// An OID value: numeric OID, symbolic reference, or quoted string
+		// OID reference: numeric OID or symbolic reference (no quoted strings)
+		_oid_ref: $ => choice($.oid, $.oid_reference),
+
+		// OID value: includes quoted strings for objectidentifier directive
 		_oid_value: $ => choice($.oid, $.oid_reference, $.qdstring),
 
 		// Numeric OID: 1.2.3.4

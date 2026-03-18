@@ -10,6 +10,8 @@ It parses directives like:
 - `matchingruleuse ( ... )`
 - `ldapsyntax ( ... )`
 - `ditcontentrule ( ... )`
+- `ditstructurerule ( ... )`
+- `nameform ( ... )`
 - `objectidentifier name value`
 
 ## Status
@@ -19,6 +21,7 @@ This grammar is intentionally permissive in a few places because LDAP schema syn
 Supported well:
 
 - OIDs and descriptors
+- Symbolic OID references (`OpenLDAProot:1`)
 - `NAME`, `DESC`, `SUP`, `MUST`, `MAY`, `SYNTAX`, `USAGE`
 - `ABSTRACT`, `STRUCTURAL`, `AUXILIARY`
 - vendor `X-*` clauses

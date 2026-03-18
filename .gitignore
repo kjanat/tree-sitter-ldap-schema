@@ -5,3 +5,4 @@ build/
 *.dll
 *.log
 .DS_Store
+*.wasm

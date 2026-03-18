@@ -4,7 +4,6 @@
 		"checkJs": true,
 		"allowJs": true,
 		"noEmit": true,
-		"module": "commonjs",
 		"moduleResolution": "node",
 		"target": "es2022",
 		"skipLibCheck": true

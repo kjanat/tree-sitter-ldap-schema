@@ -37,21 +37,5 @@
 		"tree-sitter-cli": "^0.25.3",
 		"typescript": "^5.9.3"
 	},
-	"packageManager": "bun@1.3.11",
-	"tree-sitter": [
-		{
-			"scope": "source.ldap-schema",
-			"file-types": [
-				"schema",
-				"ldif-schema",
-				"ldap-schema"
-			],
-			"first-line-regex": "^#.*(?i:openldap|ldap|schema|attributetype|objectclass)",
-			"content-regex": "(?i:attributetype|objectclass|objectidentifier)\\s",
-			"injection-regex": "^ldap[-_]?schema$",
-			"highlights": "queries/highlights.scm",
-			"tags": "queries/tags.scm",
-			"locals": "queries/locals.scm"
-		}
-	]
+	"packageManager": "bun@1.3.11"
 }

@@ -29,6 +29,8 @@ module.exports = grammar({
 				$.matchingruleuse_definition,
 				$.ldapsyntax_definition,
 				$.objectidentifier_definition,
+				// Bare definition for LDIF injection (olcAttributeTypes/olcObjectClasses values)
+				$.definition,
 			),
 
 		comment: _ =>

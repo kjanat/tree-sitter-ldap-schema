@@ -48,6 +48,10 @@
         {
           "type": "SYMBOL",
           "name": "objectidentifier_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "definition"
         }
       ]
     },

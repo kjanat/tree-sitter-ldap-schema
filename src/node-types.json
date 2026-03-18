@@ -977,6 +977,10 @@
           "named": true
         },
         {
+          "type": "definition",
+          "named": true
+        },
+        {
           "type": "ditcontentrule_definition",
           "named": true
         },

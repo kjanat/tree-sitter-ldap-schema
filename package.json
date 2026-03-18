@@ -10,6 +10,10 @@
 		"schema"
 	],
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kjanat/tree-sitter-ldap-schema.git"
+	},
 	"main": "bindings/node",
 	"files": [
 		"grammar.js",
@@ -34,8 +38,7 @@
 				"ldif-schema",
 				"ldap-schema"
 			],
-			"highlights": "queries/highlights.scm",
-			"injections": "queries/injections.scm"
+			"highlights": "queries/highlights.scm"
 		}
 	]
 }

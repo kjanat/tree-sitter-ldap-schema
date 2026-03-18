@@ -11,6 +11,5 @@ indent        = { tab-width = 4, unit = "\t" }
 grammar       = "ldap_schema"
 
 [[grammar]]
-name       = "ldap_schema"
-source.git = "https://github.com/kjanat/tree-sitter-ldap-schema.git"
-source.rev = "766f35786b432efd567580c2cb402cc6e9751827"
+name        = "ldap_schema"
+source.path = "/home/kjanat/projects/ldap-schema-zed-bundle/tree-sitter-ldap-schema"

@@ -6,7 +6,8 @@
 		"noEmit": true,
 		"moduleResolution": "node",
 		"target": "es2022",
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"types": ["tree-sitter-cli/dsl"]
 	},
 	"include": ["grammar.js"],
 	"exclude": ["node_modules", "src", ".vendor"]

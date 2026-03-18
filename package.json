@@ -29,7 +29,8 @@
 		"helix:sync": "mkdir -p ~/.config/helix/runtime/queries/ldap-schema && cp queries/*.scm ~/.config/helix/runtime/queries/ldap-schema/",
 		"parse": "tree-sitter parse",
 		"playground": "[[ -n tree-sitter-ldap_schema.wasm ]] && bun build:wasm; tree-sitter playground --quiet --grammar-path .",
-		"test": "tree-sitter test"
+		"test": "tree-sitter test",
+		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"dprint": "^0.53.0",

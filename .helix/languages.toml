@@ -1,14 +1,16 @@
 # Helix config for LDAP schema files
 # Uses the tree-sitter-ldap-schema grammar from GitHub
+# https://docs.helix-editor.com/languages.html
 
 [[language]]
-name          = "ldap-schema"
-scope         = "source.ldap-schema"
-file-types    = ["schema"]
-roots         = []
-comment-token = "#"
-indent        = { tab-width = 4, unit = "\t" }
-grammar       = "ldap_schema"
+name            = "ldap-schema"
+scope           = "source.ldap-schema"
+injection-regex = "ldap.?schema"
+file-types      = ["schema"]
+roots           = []
+comment-token   = "#"
+indent          = { tab-width = 4, unit = "\t" }
+grammar         = "ldap_schema"
 
 [[grammar]]
 name        = "ldap_schema"

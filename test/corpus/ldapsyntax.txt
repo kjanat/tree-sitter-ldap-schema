@@ -1,0 +1,40 @@
+================================================================================
+ldapsyntax with DESC
+================================================================================
+ldapSyntax ( 1.3.6.1.4.1.99999.2.1
+    DESC 'Acme Serial Number Syntax' )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ldapsyntax_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (desc_clause
+          (keyword)
+          (qdstring))))))
+
+================================================================================
+ldapsyntax with X-extension
+================================================================================
+ldapSyntax ( 1.3.6.1.4.1.99999.2.2
+    DESC 'Acme Binary Data Syntax'
+    X-NOT-HUMAN-READABLE 'TRUE' )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ldapsyntax_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (desc_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (x_clause
+          (x_tag)
+          (qdstring))))))

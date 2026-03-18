@@ -1,0 +1,41 @@
+================================================================================
+ditcontentrule with AUX MUST NOT
+================================================================================
+ditContentRule ( 2.5.6.4
+    NAME 'organizationContentRule'
+    AUX acmeOrgExtension
+    MUST acmeOrgCode
+    NOT description )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ditcontentrule_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (name_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (aux_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (oid_reference
+                (bare_word))))))
+      (clause
+        (must_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (oid_reference
+                (bare_word))))))
+      (clause
+        (not_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (oid_reference
+                (bare_word)))))))))

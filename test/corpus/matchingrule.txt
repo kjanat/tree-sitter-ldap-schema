@@ -1,0 +1,78 @@
+================================================================================
+matchingrule with SYNTAX
+================================================================================
+matchingRule ( 1.3.6.1.4.1.99999.3.1
+    NAME 'acmeSerialMatch'
+    SYNTAX 1.3.6.1.4.1.99999.2.1 )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (matchingrule_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (name_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (syntax_clause
+          (keyword)
+          (syntax_spec
+            (oid)))))))
+
+================================================================================
+matchingrule with multiple names
+================================================================================
+matchingRule ( 1.3.6.1.4.1.99999.3.2
+    NAME ( 'acmeBinaryMatch' 'acmeRawMatch' )
+    SYNTAX 1.3.6.1.4.1.99999.2.2 )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (matchingrule_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (name_clause
+          (keyword)
+          (qdescrs
+            (qdstring)
+            (qdstring))))
+      (clause
+        (syntax_clause
+          (keyword)
+          (syntax_spec
+            (oid)))))))
+
+================================================================================
+matchingruleuse with APPLIES
+================================================================================
+matchingRuleUse ( 1.3.6.1.4.1.99999.3.1
+    NAME 'acmeSerialMatch'
+    APPLIES ( acmeSerial $ acmeDeviceSerial ) )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (matchingruleuse_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (name_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (applies_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (oid_reference
+                (bare_word)))
+            (oid_item
+              (oid_reference
+                (bare_word)))))))))

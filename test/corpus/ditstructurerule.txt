@@ -1,0 +1,53 @@
+================================================================================
+ditstructurerule with FORM
+================================================================================
+ditStructureRule ( 1
+    NAME 'acmeOrgStructure'
+    FORM acmeOrgNameForm )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ditstructurerule_definition
+    (keyword)
+    (ruleid_definition
+      (number)
+      (ditstructurerule_clause
+        (name_clause
+          (keyword)
+          (qdstring)))
+      (ditstructurerule_clause
+        (form_clause
+          (keyword)
+          (oid_reference
+            (bare_word)))))))
+
+================================================================================
+ditstructurerule with SUP ruleid list
+================================================================================
+ditStructureRule ( 2
+    NAME 'acmeDeptStructure'
+    FORM acmeDeptNameForm
+    SUP ( 1 ) )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (ditstructurerule_definition
+    (keyword)
+    (ruleid_definition
+      (number)
+      (ditstructurerule_clause
+        (name_clause
+          (keyword)
+          (qdstring)))
+      (ditstructurerule_clause
+        (form_clause
+          (keyword)
+          (oid_reference
+            (bare_word))))
+      (ditstructurerule_clause
+        (ditstructurerule_sup_clause
+          (keyword)
+          (ruleid_list
+            (number)))))))

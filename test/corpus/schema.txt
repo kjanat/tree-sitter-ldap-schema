@@ -1,0 +1,148 @@
+================================================================================
+Basic objectclass and attributetype
+================================================================================
+objectclass ( 1.2.840.113533.7.67.14
+    NAME 'entrustDNQualifierUser' SUP top AUXILIARY MAY dnQualifier )
+
+attributetype ( 2.5.4.65 NAME 'pseudonym'
+    DESC 'RFC3039: pseudonym'
+    SUP name )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (objectclass_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (name_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (sup_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (descr
+                (bare_word))))))
+      (clause
+        (kind_clause
+          (keyword)))
+      (clause
+        (may_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (descr
+                (bare_word))))))))
+  (attributetype_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (name_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (desc_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (sup_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (descr
+                (bare_word)))))))))
+
+================================================================================
+Lists and extensions
+================================================================================
+objectclass ( 1.2.840.113549.1.9.24.2
+    NAME ( 'naturalPerson' 'personAlias' )
+    DESC 'RFC 2985'
+    SUP top AUXILIARY
+    MAY ( emailAddress $ unstructuredName $ unstructuredAddress $
+        dateOfBirth & placeOfBirth & gender & countryOfCitizenship &
+        countryOfResidence & pseudonym & serialNumber )
+    X-ORIGIN 'RFC 2985' )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (objectclass_definition
+    (keyword)
+    (definition
+      (oid)
+      (clause
+        (name_clause
+          (keyword)
+          (qdescrs
+            (qdstring)
+            (qdstring))))
+      (clause
+        (desc_clause
+          (keyword)
+          (qdstring)))
+      (clause
+        (sup_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (descr
+                (bare_word))))))
+      (clause
+        (kind_clause
+          (keyword)))
+      (clause
+        (may_clause
+          (keyword)
+          (oid_list
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word)))
+            (oid_item
+              (descr
+                (bare_word))))))
+      (clause
+        (x_clause
+          (x_tag)
+          (qdstring))))))
+
+================================================================================
+Object identifier directive
+================================================================================
+objectidentifier openldapRoot 1.3.6.1.4.1.4203.1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (objectidentifier_definition
+    (keyword)
+    (bare_word)
+    (oid)))

@@ -1,0 +1,19 @@
+{
+	"grammars": [
+		{
+			"name": "ldap_schema",
+			"scope": "source.ldap-schema",
+			"path": ".",
+			"file-types": ["schema", "ldif-schema", "ldap-schema"],
+			"highlights": "queries/highlights.scm",
+			"injections": "queries/injections.scm"
+		}
+	],
+	"metadata": {
+		"version": "0.1.0",
+		"license": "MIT",
+		"links": {
+			"repository": "https://github.com/kjanat/tree-sitter-ldap-schema"
+		}
+	}
+}

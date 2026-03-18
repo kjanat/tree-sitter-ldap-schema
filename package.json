@@ -1,0 +1,41 @@
+{
+	"name": "tree-sitter-ldap-schema",
+	"version": "0.1.0",
+	"description": "Tree-sitter grammar for OpenLDAP / RFC 4512 LDAP schema files",
+	"keywords": [
+		"parser",
+		"tree-sitter",
+		"ldap",
+		"openldap",
+		"schema"
+	],
+	"license": "MIT",
+	"main": "bindings/node",
+	"files": [
+		"grammar.js",
+		"queries/*",
+		"src/*",
+		"bindings/node/*"
+	],
+	"scripts": {
+		"fmt": "npx -y dprint fmt -c=\"https://raw.githubusercontent.com/kjanat/kjanat/refs/heads/master/configs/dprint.remote.json\"",
+		"generate": "tree-sitter generate",
+		"parse": "tree-sitter parse",
+		"test": "tree-sitter test"
+	},
+	"devDependencies": {
+		"tree-sitter-cli": "^0.25.3"
+	},
+	"tree-sitter": [
+		{
+			"scope": "source.ldap-schema",
+			"file-types": [
+				"schema",
+				"ldif-schema",
+				"ldap-schema"
+			],
+			"highlights": "queries/highlights.scm",
+			"injections": "queries/injections.scm"
+		}
+	]
+}

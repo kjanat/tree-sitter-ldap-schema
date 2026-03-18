@@ -1,0 +1,125 @@
+# Advanced schema features — fictional example
+# Exercises: ldapsyntax, matchingrule, matchingruleuse,
+#            ditcontentrule, ditstructurerule, nameform, x-extensions
+
+# OID tree
+objectidentifier ExRoot 1.3.6.1.4.1.99998
+objectidentifier ExAttr ExRoot:1
+objectidentifier ExClass ExRoot:2
+objectidentifier ExSyntax ExRoot:3
+objectidentifier ExMatch ExRoot:4
+objectidentifier ExForm ExRoot:5
+objectidentifier ExDCR ExRoot:6
+objectidentifier ExDSR ExRoot:7
+
+# Custom syntax definition
+ldapsyntax ( ExSyntax:1
+	DESC 'Serial number with checksum digit'
+	X-NOT-HUMAN-READABLE 'FALSE' )
+
+ldapsyntax ( ExSyntax:2
+	DESC 'Binary sensor reading'
+	X-NOT-HUMAN-READABLE 'TRUE' )
+
+# Matching rules
+matchingrule ( ExMatch:1
+	NAME 'serialNumberMatch'
+	DESC 'Case-insensitive serial number comparison'
+	SYNTAX ExSyntax:1 )
+
+matchingrule ( ExMatch:2
+	NAME ( 'caseExactTagMatch' 'tagMatch' )
+	DESC 'Exact match on tagged values'
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+
+# Matching rule use — restricts which attributes a rule applies to
+matchingruleuse ( ExMatch:1
+	NAME 'serialNumberMatchUse'
+	DESC 'Serial number match applies only to serialNumber attributes'
+	APPLIES ( serialNumber ) )
+
+matchingruleuse ( ExMatch:2
+	NAME 'tagMatchUse'
+	APPLIES ( cn $ description ) )
+
+# Attribute using custom matching
+attributetype ( ExAttr:1
+	NAME 'exSerialCode'
+	DESC 'Equipment serial with checksum'
+	EQUALITY serialNumberMatch
+	SYNTAX ExSyntax:1{64}
+	SINGLE-VALUE )
+
+attributetype ( ExAttr:2
+	NAME 'exLocation'
+	DESC 'Physical location tag'
+	SUP name )
+
+attributetype ( ExAttr:3
+	NAME 'exRackSlot'
+	DESC 'Rack and slot identifier'
+	EQUALITY caseIgnoreMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{16}
+	SINGLE-VALUE )
+
+# Structural object class
+objectclass ( ExClass:1
+	NAME 'exEquipment'
+	DESC 'Managed equipment'
+	SUP top
+	STRUCTURAL
+	MUST ( cn $ exSerialCode )
+	MAY ( description $ exLocation $ exRackSlot ) )
+
+# Auxiliary for compliance tagging
+objectclass ( ExClass:2
+	NAME 'exComplianceAux'
+	DESC 'Compliance metadata overlay'
+	SUP top
+	AUXILIARY
+	MAY ( exSerialCode ) )
+
+# DIT content rule — restrict/extend what exEquipment entries may contain
+ditcontentrule ( ExClass:1
+	NAME 'exEquipmentContentRule'
+	DESC 'Equipment entries must also carry location info'
+	AUX ( exComplianceAux )
+	MUST ( exLocation )
+	NOT ( exRackSlot ) )
+
+# Name form — names exEquipment entries by cn
+nameform ( ExForm:1
+	NAME 'exEquipmentNameForm'
+	DESC 'Equipment entries are named by cn'
+	OC exEquipment
+	MUST ( cn ) )
+
+// DIT structure rule — governs where exEquipment entries may appear
+// Uses numeric ruleid, not OID
+ditstructurerule ( 1
+	NAME 'exEquipmentStructureRule'
+	DESC 'Equipment entries use the equipment name form'
+	FORM exEquipmentNameForm )
+
+ditstructurerule ( 2
+	NAME 'exSubEquipmentRule'
+	DESC 'Sub-equipment nests under equipment'
+	FORM exEquipmentNameForm
+	SUP ( 1 ) )
+
+# X-extension clauses (vendor-specific metadata)
+attributetype ( ExAttr:4
+	NAME 'exAuditTag'
+	DESC 'Audit trail marker'
+	EQUALITY caseExactMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+	X-ORIGIN 'Acme Compliance Framework'
+	X-SCHEMA-FILE 'advanced.schema' )
+
+# OBSOLETE keyword
+attributetype ( ExAttr:5
+	NAME 'exLegacyId'
+	DESC 'Replaced by exSerialCode'
+	OBSOLETE
+	EQUALITY caseIgnoreMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )

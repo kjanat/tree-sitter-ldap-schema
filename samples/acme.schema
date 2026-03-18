@@ -1,0 +1,80 @@
+# Acme Corp LDAP Schema — fictional example
+# Exercises: objectidentifier, attributetype, objectclass, comments
+
+# OID tree aliases (OpenLDAP extension)
+objectidentifier AcmeRoot 1.3.6.1.4.1.99999
+objectidentifier AcmeAttr AcmeRoot:1
+objectidentifier AcmeClass AcmeRoot:2
+objectidentifier AcmeSyntax AcmeRoot:3
+
+# Attribute types
+
+attributetype ( AcmeAttr:1
+	NAME 'acmeEmployeeId'
+	DESC 'Unique employee identifier within Acme Corp'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{32}
+	SINGLE-VALUE )
+
+attributetype ( AcmeAttr:2
+	NAME ( 'acmeDept' 'acmeDepartment' )
+	DESC 'Department code or name'
+	EQUALITY caseIgnoreMatch
+	ORDERING caseIgnoreOrderingMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{128} )
+
+attributetype ( AcmeAttr:3
+	NAME 'acmeBadgeNumber'
+	DESC 'Physical access badge number'
+	EQUALITY integerMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+	SINGLE-VALUE
+	USAGE userApplications )
+
+attributetype ( AcmeAttr:4
+	NAME 'acmeInternalNote'
+	DESC 'Operational note not visible to end users'
+	EQUALITY caseIgnoreMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+	USAGE directoryOperation
+	NO-USER-MODIFICATION )
+
+attributetype ( AcmeAttr:5
+	NAME 'acmeProject'
+	DESC 'Project assignment'
+	SUP name
+	COLLECTIVE )
+
+# Object classes
+
+objectclass ( AcmeClass:1
+	NAME 'acmePerson'
+	DESC 'Acme Corp employee entry'
+	SUP inetOrgPerson
+	STRUCTURAL
+	MUST ( acmeEmployeeId )
+	MAY ( acmeDept $ acmeBadgeNumber $ acmeProject ) )
+
+objectclass ( AcmeClass:2
+	NAME 'acmeDevice'
+	DESC 'Network-connected device managed by Acme'
+	SUP top
+	STRUCTURAL
+	MUST ( cn )
+	MAY ( serialNumber $ description $ l ) )
+
+objectclass ( AcmeClass:3
+	NAME 'acmeProjectAux'
+	DESC 'Auxiliary class for project metadata'
+	SUP top
+	AUXILIARY
+	MAY ( acmeProject $ description ) )
+
+objectclass ( AcmeClass:4
+	NAME 'acmeAbstractEntry'
+	DESC 'Abstract base for all Acme directory objects'
+	SUP top
+	ABSTRACT
+	MAY ( acmeInternalNote ) )

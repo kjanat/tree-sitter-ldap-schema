@@ -36,7 +36,7 @@ Also tolerated:
 ## Development
 
 ```bash
-npm install
-npm run generate
-npm test
+npm/bun install
+npm/bun run generate
+npm/bun run test
 ```

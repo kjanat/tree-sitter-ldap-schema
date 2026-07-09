@@ -1,0 +1,35 @@
+#:tombi lint.disabled = true
+
+[package]
+name         = "tree-sitter-ldap-schema"
+version      = "0.1.0"
+authors      = ["Kaj Kowalski <info@kajkowalski.nl>"]
+edition      = "2021"
+description  = "Tree-sitter grammar for OpenLDAP / RFC 4512 LDAP schema files"
+readme       = "README.md"
+repository   = "https://github.com/kjanat/tree-sitter-ldap-schema"
+license      = "MIT"
+keywords     = ["incremental", "ldap-schema", "parsing", "tree-sitter"]
+categories   = ["parser-implementations", "parsing", "text-editors"]
+build        = "bindings/rust/build.rs"
+include      = [
+  "/LICENSE",
+  "bindings/rust/*",
+  "grammar.js",
+  "queries/*",
+  "src/*",
+  "tree-sitter.json",
+]
+autoexamples = false
+
+[lib]
+path = "bindings/rust/lib.rs"
+
+[dependencies]
+tree-sitter-language = "0.1"
+
+[dev-dependencies]
+tree-sitter = "0.25.10"
+
+[build-dependencies]
+cc = "1.2"

@@ -3,8 +3,8 @@ name            = "tree-sitter-ldap-schema"
 version         = "0.1.0"
 description     = "Tree-sitter grammar for OpenLDAP / RFC 4512 LDAP schema files"
 readme          = "README.md"
-requires-python = ">=3.10"
-license.text    = "MIT"
+requires-python = ">=3.13"
+license         = "MIT"
 authors         = [{ name = "Kaj Kowalski", email = "info@kajkowalski.nl" }]
 keywords        = ["incremental", "ldap-schema", "parsing", "tree-sitter"]
 classifiers     = [
@@ -15,15 +15,35 @@ classifiers     = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/kjanat/tree-sitter-ldap-schema"
+Homepage   = "https://github.com/kjanat/tree-sitter-ldap-schema"
+Repository = "https://github.com/kjanat/tree-sitter-ldap-schema"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.24"]
+core = ["tree-sitter~=0.25"]
+
+[dependency-groups]
+dev   = [
+  { include-group = "build" },
+  { include-group = "lint" },
+  { include-group = "ts" },
+]
+build = ["setuptools>=77.0.0", "typing_extensions>=4.12", "wheel"]
+lint  = ["basedpyright", "ruff", "ty"]
+ts    = ["tree-sitter~=0.25"]
 
 [build-system]
-requires      = ["setuptools>=62.4.0", "wheel"]
+requires      = ["setuptools>=77.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-build          = "cp310-*"
-build-frontend = "build"
+build          = "cp313-*"
+build-frontend = "build[uv]"
+
+[tool.pyright]
+pythonVersion          = "3.13"
+venvPath               = "."
+venv                   = ".venv"
+reportMissingTypeStubs = false
+
+[tool.ruff]
+target-version = "py313"

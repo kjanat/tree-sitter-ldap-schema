@@ -1,12 +1,11 @@
 from unittest import TestCase
 
-from tree_sitter import Language, Parser
 import tree_sitter_ldap_schema
+
+from tree_sitter import Language, Parser
 
 
 class TestLanguage(TestCase):
     def test_can_load_grammar(self):
-        try:
-            Parser(Language(tree_sitter_ldap_schema.language()))
-        except Exception:
-            self.fail("Error loading LDAP Schema grammar")
+        # an uncaught exception fails the test on its own
+        _ = Parser(Language(tree_sitter_ldap_schema.language()))

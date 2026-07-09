@@ -7,24 +7,29 @@
 			"title": "LDAP Schema",
 			"scope": "source.ldap-schema",
 			"path": ".",
-			"file-types": ["schema", "ldapschema"],
-			"first-line-regex": "^#.*(?i:openldap|ldap|schema|attributetype|objectclass)",
-			"content-regex": "(?i:attributetype|objectclass|objectidentifier)\\s",
-			"injection-regex": "^ldap[-_]?schema$",
+			"file-types": [
+				"schema",
+				"ldapschema"
+			],
 			"highlights": "queries/highlights.scm",
+			"locals": "queries/locals.scm",
 			"tags": "queries/tags.scm",
-			"locals": "queries/locals.scm"
+			"injection-regex": "^ldap[-_]?schema$",
+			"first-line-regex": "^#.*(?i:openldap|ldap|schema|attributetype|objectclass)",
+			"content-regex": "(?i:attributetype|objectclass|objectidentifier)\\s"
 		}
 	],
 	"metadata": {
 		"version": "0.1.0",
 		"license": "MIT",
 		"description": "Tree-sitter grammar for OpenLDAP / RFC 4512 LDAP schema files",
-		"authors": [{
-			"name": "Kaj Kowalski",
-			"email": "info@kajkowalski.nl",
-			"url": "https://github.com/kjanat"
-		}],
+		"authors": [
+			{
+				"name": "Kaj Kowalski",
+				"email": "info@kajkowalski.nl",
+				"url": "https://github.com/kjanat"
+			}
+		],
 		"links": {
 			"repository": "https://github.com/kjanat/tree-sitter-ldap-schema"
 		}
@@ -32,8 +37,11 @@
 	"bindings": {
 		"c": true,
 		"go": true,
+		"java": true,
 		"node": true,
 		"python": true,
-		"rust": true
+		"rust": true,
+		"swift": true,
+		"zig": true
 	}
 }

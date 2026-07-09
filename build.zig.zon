@@ -1,0 +1,14 @@
+.{
+    .name = .tree_sitter_ldap_schema,
+    .fingerprint = 0xd52e4067fe0fbba9,
+    .version = "0.1.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "bindings/zig",
+        "src",
+        "queries",
+        "LICENSE",
+        "README.md",
+    },
+}

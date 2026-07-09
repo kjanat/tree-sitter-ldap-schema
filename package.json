@@ -32,9 +32,13 @@
 		"generate": "tree-sitter generate",
 		"helix:sync": "mkdir -p ~/.config/helix/runtime/queries/ldap-schema && cp queries/*.scm ~/.config/helix/runtime/queries/ldap-schema/",
 		"install": "node-gyp-build",
+		"postinstall": "node scripts/ensure-native.mjs",
+		"setup:native": "node scripts/ensure-native.mjs",
 		"prestart": "tree-sitter build --wasm",
 		"start": "tree-sitter playground --quiet",
-		"test": "tree-sitter test",
+		"test": "node --test bindings/node/*_test.js",
+		"test:bun": "bun test",
+		"test:corpus": "tree-sitter test",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {

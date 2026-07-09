@@ -1,10 +1,8 @@
-#:tombi lint.disabled = true
-
 [package]
 name         = "tree-sitter-ldap-schema"
 version      = "0.1.0"
-authors      = ["Kaj Kowalski <info@kajkowalski.nl>"]
-edition      = "2021"
+authors      = ["Kaj Kowalski <info@kajkowalski.nl>"]                           # tombi: lint.rules = { deprecated.disabled = true, unused-noqa.disabled = true }
+edition      = "2024"
 description  = "Tree-sitter grammar for OpenLDAP / RFC 4512 LDAP schema files"
 readme       = "README.md"
 repository   = "https://github.com/kjanat/tree-sitter-ldap-schema"
@@ -29,7 +27,7 @@ path = "bindings/rust/lib.rs"
 tree-sitter-language = "0.1"
 
 [dev-dependencies]
-tree-sitter = "0.25.10"
+tree-sitter = "0.26.10"
 
 [build-dependencies]
 cc = "1.2"

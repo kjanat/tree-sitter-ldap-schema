@@ -4,7 +4,8 @@
 		"checkJs": true,
 		"allowJs": true,
 		"noEmit": true,
-		"moduleResolution": "node",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
 		"target": "es2022",
 		"skipLibCheck": true,
 		"types": ["tree-sitter-cli/dsl"]

@@ -47,3 +47,5 @@ zig-out/
 *.tar.gz
 *.tgz
 *.zip
+.clangd
+.clangd-headers/

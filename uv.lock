@@ -132,7 +132,7 @@ ts = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "tree-sitter", marker = "extra == 'core'", specifier = "~=0.25" }]
+requires-dist = [{ name = "tree-sitter", marker = "extra == 'core'", specifier = "~=0.26" }]
 provides-extras = ["core"]
 
 [package.metadata.requires-dev]
@@ -145,7 +145,7 @@ dev = [
     { name = "basedpyright" },
     { name = "ruff" },
     { name = "setuptools", specifier = ">=77.0.0" },
-    { name = "tree-sitter", specifier = "~=0.25" },
+    { name = "tree-sitter", specifier = "~=0.26" },
     { name = "ty" },
     { name = "typing-extensions", specifier = ">=4.12" },
     { name = "wheel" },
@@ -155,7 +155,7 @@ lint = [
     { name = "ruff" },
     { name = "ty" },
 ]
-ts = [{ name = "tree-sitter", specifier = "~=0.25" }]
+ts = [{ name = "tree-sitter", specifier = "~=0.26" }]
 
 [[package]]
 name = "ty"

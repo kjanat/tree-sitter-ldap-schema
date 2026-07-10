@@ -19,7 +19,7 @@ Homepage   = "https://github.com/kjanat/tree-sitter-ldap-schema"
 Repository = "https://github.com/kjanat/tree-sitter-ldap-schema"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.25"]
+core = ["tree-sitter~=0.26"]
 
 [dependency-groups]
 dev   = [
@@ -29,7 +29,7 @@ dev   = [
 ]
 build = ["setuptools>=77.0.0", "typing_extensions>=4.12", "wheel"]
 lint  = ["basedpyright", "ruff", "ty"]
-ts    = ["tree-sitter~=0.25"]
+ts    = ["tree-sitter~=0.26"]
 
 [build-system]
 requires      = ["setuptools>=77.0.0", "wheel"]

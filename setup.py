@@ -38,7 +38,7 @@ class BuildExt(build_ext):
         if path.exists("src/scanner.c"):
             ext.sources.append("src/scanner.c")
         if ext.py_limited_api:
-            ext.define_macros.append(("Py_LIMITED_API", "0x030A0000"))
+            ext.define_macros.append(("Py_LIMITED_API", "0x030D0000"))
         super().build_extension(ext)  # pyright: ignore[reportUnknownMemberType]
 
 
@@ -47,7 +47,7 @@ class BdistWheel(bdist_wheel):
     def get_tag(self) -> tuple[str, str, str]:
         python, abi, platform = super().get_tag()
         if python.startswith("cp") and not get_config_var("Py_GIL_DISABLED"):
-            python, abi = "cp310", "abi3"
+            python, abi = "cp313", "abi3"
         return python, abi, platform
 
 

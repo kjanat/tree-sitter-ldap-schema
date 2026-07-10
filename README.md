@@ -36,7 +36,8 @@ Also tolerated:
 ## Development
 
 ```bash
-npm/bun install
+npm/bun install          # also builds native addons (postinstall)
 npm/bun run generate
-npm/bun run test
+npm/bun run test:corpus  # grammar corpus + highlight/tag assertions
+npm/bun run test         # node binding smoke test
 ```

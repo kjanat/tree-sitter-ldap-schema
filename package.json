@@ -41,6 +41,7 @@
 		"helix:sync": "mkdir -p ~/.config/helix/runtime/queries/ldap-schema && cp queries/*.scm ~/.config/helix/runtime/queries/ldap-schema/",
 		"install": "node-gyp-build",
 		"postinstall": "node scripts/ensure-native.mjs",
+		"prepack": "tree-sitter build --wasm",
 		"prepare": "node scripts/ensure-clangd-headers.mjs",
 		"setup:clangd-headers": "node scripts/ensure-clangd-headers.mjs",
 		"setup:native": "node scripts/ensure-native.mjs",
